@@ -8,7 +8,7 @@ export SERVER_HOME=/usr/local/tomcat
 APP_BRANCH=master
 # APP_NAME=$1
 APP_NAME=api-exam
-GIT_URL=git@github.com:iunsuccessful/api-exam.git
+GIT_URL=https://github.com/iunsuccessful/api-exam.git
 
 APPS_BASE_HOME=$HOME/apps
 ROJECT_SOURCE_DIR=$APPS_BASE_HOME/$APP_NAME
