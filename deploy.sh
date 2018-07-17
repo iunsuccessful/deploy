@@ -50,6 +50,7 @@ package(){
 
     echo "copy config file to source..."
     # cp -rf $WEB_APP_HOME/classes/server.xml $CATALINA_BASE/conf/server.xml
+    cp ~/application.properties $ROJECT_SOURCE_BRANCH_DIR/src/main/resources
 
     ###package app
     echo "[INFO] start to package application..."
