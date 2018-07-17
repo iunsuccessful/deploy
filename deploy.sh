@@ -2,6 +2,7 @@
 ### soft location
 GRADLE_HOME=/usr/local/gradle
 export SERVER_HOME=/usr/local/tomcat
+export JAVA_HOME=/usr/local/java
 
 ### environment
 
@@ -47,6 +48,8 @@ package(){
     cd $ROJECT_SOURCE_DIR
     git clone -b $APP_BRANCH $GIT_URL $APP_BRANCH
 
+    echo "copy config file to source..."
+    # cp -rf $WEB_APP_HOME/classes/server.xml $CATALINA_BASE/conf/server.xml
 
     ###package app
     echo "[INFO] start to package application..."
