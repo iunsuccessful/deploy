@@ -1,13 +1,14 @@
 
 ### soft location
-MAVEN_HOME=/usr/local/maven
+GRADLE_HOME=/usr/local/gradle
 export SERVER_HOME=/usr/local/tomcat
 
 ### environment
 
 APP_BRANCH=master
-APP_NAME=$1
-GIT_URL=git@git.oschina.net:azt-market/$APP_NAME.git
+# APP_NAME=$1
+APP_NAME=api-exam
+GIT_URL=git@github.com:iunsuccessful/api-exam.git
 
 APPS_BASE_HOME=$HOME/apps
 ROJECT_SOURCE_DIR=$APPS_BASE_HOME/$APP_NAME
@@ -43,12 +44,6 @@ package(){
         mkdir $ROJECT_SOURCE_DIR
     fi
 
-    mvninstall parent
-
-    mvninstall azt-model
-
-    mvninstall azt-core
-
     cd $ROJECT_SOURCE_DIR
     git clone -b $APP_BRANCH $GIT_URL $APP_BRANCH
 
@@ -56,28 +51,11 @@ package(){
     ###package app
     echo "[INFO] start to package application..."
     echo "current path is " `pwd`
-    echo "result cmd is $MAVEN_HOME/bin/mvn package"
+    echo "result cmd is $GRADLE_HOME/bin/gradle build"
     cd $ROJECT_SOURCE_BRANCH_DIR
-    $MAVEN_HOME/bin/mvn package
+    $GRADLE_HOME/bin/gradle build
     echo "[INFO] package application finish."
 
-}
-
-mvninstall() {
-
-    ## always remove old code 
-    echo " start to remove existed src folder:  $APPS_BASE_HOME/$1/master "
-    rm -rf  $APPS_BASE_HOME/$1/master
-
-    echo "[INFO] git clone -b master git@git.oschina.net:azt-market/$1.git master"
-    if [ ! -d "$APPS_BASE_HOME/$1" ]; then
-        echo "[INFO] make SOURCE_DIR :" $APPS_BASE_HOME/$1
-        mkdir $APPS_BASE_HOME/$1
-    fi
-    cd $APPS_BASE_HOME/$1
-    git clone -b master git@git.oschina.net:azt-market/$1.git master
-    cd $APPS_BASE_HOME/$1/master
-    $MAVEN_HOME/bin/mvn install
 }
 
 ### sent to remote
